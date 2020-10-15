@@ -11,6 +11,16 @@
   "crypto_id": "90",
 "price": 3900.00,
 "rule": "gt"
-}
+},
+    {
+      "crypto_id": "91",
+      "price": 3470.98,
+      "rule": "lt"
+    },
+    {
+      "crypto_id": "91",
+      "price": 3900.00,
+      "rule": "gt"
+    }
     ]
 }
