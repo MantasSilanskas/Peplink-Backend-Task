@@ -1,18 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e4c8d07b-85a4-4b7e-960a-30f2c736c7ed" name="Default Changelist" comment="Added rulessFile.json and reading of rules file">
-      <change afterPath="$PROJECT_DIR$/rulesFile.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Peplink_Backend_Task.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+    <list default="true" id="e4c8d07b-85a4-4b7e-960a-30f2c736c7ed" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/pkg/rawData.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pkg/readingData.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmd/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rulesFile.json" beforeDir="false" afterPath="$PROJECT_DIR$/testRulesFile.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Go File" />
+      </list>
+    </option>
   </component>
   <component name="GOROOT" path="C:\Go" />
   <component name="Git.Settings">
@@ -29,6 +35,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DefaultGoTemplateProperty" value="Go File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="go.import.settings.migrated" value="true" />
@@ -66,36 +73,41 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added gitignore file" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added gitignore file" />
+    <MESSAGE value="Added rulesFile.json, reading of rules file and updated gitignore file." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added rulesFile.json, reading of rules file and updated gitignore file." />
   </component>
   <component name="WindowStateProjectService">
     <state x="414" y="195" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1602763238276">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="414" y="195" key="#com.intellij.execution.impl.EditConfigurationsDialog/-1920.0.1920.1080/0.0.1920.1080@0.0.1920.1080" timestamp="1602763238276" />
-    <state x="558" y="117" key="CommitChangelistDialog2" timestamp="1602765969105">
+    <state x="558" y="117" key="CommitChangelistDialog2" timestamp="1602766004132">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="558" y="117" key="CommitChangelistDialog2/-1920.0.1920.1080/0.0.1920.1080@0.0.1920.1080" timestamp="1602765969105" />
-    <state width="1877" height="295" key="GridCell.Tab.0.bottom" timestamp="1602765922319">
+    <state x="558" y="117" key="CommitChangelistDialog2/-1920.0.1920.1080/0.0.1920.1080@0.0.1920.1080" timestamp="1602766004132" />
+    <state width="1877" height="295" key="GridCell.Tab.0.bottom" timestamp="1602770149908">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1877" height="295" key="GridCell.Tab.0.bottom/-1920.0.1920.1080/0.0.1920.1080@0.0.1920.1080" timestamp="1602765922319" />
-    <state width="1877" height="295" key="GridCell.Tab.0.center" timestamp="1602765922319">
+    <state width="1877" height="295" key="GridCell.Tab.0.bottom/-1920.0.1920.1080/0.0.1920.1080@0.0.1920.1080" timestamp="1602770149908" />
+    <state width="1877" height="295" key="GridCell.Tab.0.center" timestamp="1602770149908">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1877" height="295" key="GridCell.Tab.0.center/-1920.0.1920.1080/0.0.1920.1080@0.0.1920.1080" timestamp="1602765922319" />
-    <state width="1877" height="295" key="GridCell.Tab.0.left" timestamp="1602765922319">
+    <state width="1877" height="295" key="GridCell.Tab.0.center/-1920.0.1920.1080/0.0.1920.1080@0.0.1920.1080" timestamp="1602770149908" />
+    <state width="1877" height="295" key="GridCell.Tab.0.left" timestamp="1602770149908">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1877" height="295" key="GridCell.Tab.0.left/-1920.0.1920.1080/0.0.1920.1080@0.0.1920.1080" timestamp="1602765922319" />
-    <state width="1877" height="295" key="GridCell.Tab.0.right" timestamp="1602765922319">
+    <state width="1877" height="295" key="GridCell.Tab.0.left/-1920.0.1920.1080/0.0.1920.1080@0.0.1920.1080" timestamp="1602770149908" />
+    <state width="1877" height="295" key="GridCell.Tab.0.right" timestamp="1602770149908">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1877" height="295" key="GridCell.Tab.0.right/-1920.0.1920.1080/0.0.1920.1080@0.0.1920.1080" timestamp="1602765922319" />
-    <state x="552" y="273" key="Vcs.Push.Dialog.v2" timestamp="1602762696816">
+    <state width="1877" height="295" key="GridCell.Tab.0.right/-1920.0.1920.1080/0.0.1920.1080@0.0.1920.1080" timestamp="1602770149908" />
+    <state x="552" y="273" key="Vcs.Push.Dialog.v2" timestamp="1602766007505">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="552" y="273" key="Vcs.Push.Dialog.v2/-1920.0.1920.1080/0.0.1920.1080@0.0.1920.1080" timestamp="1602762696816" />
+    <state x="552" y="273" key="Vcs.Push.Dialog.v2/-1920.0.1920.1080/0.0.1920.1080@0.0.1920.1080" timestamp="1602766007505" />
+    <state x="623" y="235" width="672" height="678" key="search.everywhere.popup" timestamp="1602770067907">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="623" y="235" width="672" height="678" key="search.everywhere.popup/-1920.0.1920.1080/0.0.1920.1080@0.0.1920.1080" timestamp="1602770067907" />
   </component>
 </project>
