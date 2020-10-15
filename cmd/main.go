@@ -1,19 +1,23 @@
 package main
 
 import (
-	"fmt"
 	"github.com/MantasSilanskas/Peplink-Backend-Task/pkg"
+)
+
+const (
+	baseUrl = "https://api.coinlore.com/api/ticker/?id="
 )
 
 func main() {
 
-	testRuleSet, err := LoadRuleSets("TestRulesFile.json") // Loads all rule sets from rulesFile.json
+	testRuleSet, err := pkg.LoadRuleSets("rulesFile.json") // Loads all rule sets from rulesFile.json
 	if err != nil {
 		panic(err)
 	}
 
 	for _, v := range testRuleSet.Rules {
-		fmt.Println(v.Price)
+		fileUrl := baseUrl + v.CryptoID
+		pkg.DownloadFile("rawData.txt", fileUrl)
 	}
 
 }
