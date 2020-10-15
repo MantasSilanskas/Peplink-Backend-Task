@@ -2,36 +2,29 @@ package pkg
 
 import (
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
 	"os"
 )
 
-func ReadDataFile(fileName string) error {
+func ReadDataFile(fileName string) (CryptoCurrencyData, error) {
+
+	var data CryptoCurrencyData
 
 	jsonFile, err := os.Open(fileName)
 	if err != nil {
-		return err
+		return data, err
 	}
 	defer jsonFile.Close()
 
 	byteValue, err := ioutil.ReadAll(jsonFile)
 	if err != nil {
-		return err
+		return data, err
 	}
-
-	var data CryptoCurrencyData
 
 	err = json.Unmarshal(byteValue, &data)
 	if err != nil {
-		fmt.Println(err)
+		return data, err
 	}
 
-	fmt.Println(byteValue)
-
-	//for i := 0; i < len();i++{
-	//
-	//}
-
-	return nil
+	return data, err
 }

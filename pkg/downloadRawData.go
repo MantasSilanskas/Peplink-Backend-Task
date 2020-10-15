@@ -16,7 +16,7 @@ func DownloadFile(filepath string, url string) error {
 	defer resp.Body.Close()
 
 	//Create file to save data in
-	out, err := os.OpenFile(filepath, os.O_CREATE|os.O_WRONLY, 0644)
+	out, err := os.Create(filepath)
 	if err != nil {
 		return err
 	}
