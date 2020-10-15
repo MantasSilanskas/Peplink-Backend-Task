@@ -1,13 +1,9 @@
 package main
 
 import (
-	"encoding/json"
 	"fmt"
-	"os"
-	""
+	"github.com/MantasSilanskas/Peplink-Backend-Task/pkg"
 )
-
-
 
 func main() {
 
@@ -20,6 +16,4 @@ func main() {
 		fmt.Println(v.Price)
 	}
 
-
 }
-

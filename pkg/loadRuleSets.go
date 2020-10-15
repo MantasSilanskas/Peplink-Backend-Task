@@ -15,7 +15,7 @@ type ruleSets struct {
 	} `json:"rules"`
 }
 
-func LoadTestRuleSets(filename string) (ruleSets, error) {
+func LoadRuleSets(filename string) (ruleSets, error) {
 
 	var ruleSet ruleSets
 	ruleSetFile, err := os.Open(filename)

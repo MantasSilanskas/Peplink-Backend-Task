@@ -2,8 +2,7 @@ package pkg
 
 import "fmt"
 
-func DownloadFile()  {
-
+func DownloadFile() {
 
 	testRuleSet, err := LoadTestRuleSets("TestRulesFile.json") // Loads all rule sets from rulesFile.json
 	if err != nil {
@@ -15,7 +14,6 @@ func DownloadFile()  {
 	}
 
 	baseUrl := "https://api.coinlore.com/api/ticker/?id="
-	fileUrl := baseUrl +
-
+	fmt.Println(baseUrl)
 
 }
