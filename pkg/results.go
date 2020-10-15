@@ -11,10 +11,6 @@ const (
 	dataFileExtension     = ".json"
 )
 
-type rulesID struct {
-	ID []string
-}
-
 func Parse() error {
 
 	ruleSet, err := LoadRuleSets("rulesFile.json") // Loads all rule sets from rulesFile.json
@@ -22,81 +18,33 @@ func Parse() error {
 		fmt.Println(err)
 	}
 
-	var idSlice rulesID
+	m := make(map[string]CryptoCurrencyData)
 
-	var currentCryptoID string
-	for i, v := range ruleSet.Rules {
-		if currentCryptoID == v.CryptoID {
-			continue
-		}
-		currentCryptoID = v.CryptoID
+	for _, v := range ruleSet.Rules {
 		fileUrl := baseUrl + v.CryptoID
-		DownloadFile(beginningDataFileName+v.CryptoID+dataFileExtension, fileUrl)
-		idSlice.ID[i] = v.CryptoID
-		i++
-	}
-
-	var lastRuleID string
-
-	for i, v := range ruleSet.Rules {
-		if lastRuleID != v.CryptoID {
-			data, err := ReadDataFile(beginningDataFileName + idSlice.ID[i] + dataFileExtension)
+		if mapData, ok := m[v.CryptoID]; !ok {
+			dataFile, err := DownloadFile(beginningDataFileName+v.CryptoID+dataFileExtension, fileUrl)
 			if err != nil {
 				return err
 			}
-			for _, elem := range data {
-				price, err := strconv.ParseFloat(elem.PriceUsd, 64)
-				if err != nil {
-					return err
-				}
-				fmt.Println(v.Price, price)
-				if elem.ID == v.CryptoID {
-					for i, r := range ruleSet.Rules {
-						if r.Rule == "gt" && price > r.Price {
-							fmt.Println("Cryptocurrency", elem.ID, elem.Name, "price is greater than", v.Price)
-						}
-						if r.Rule == "lt" && price < r.Price {
-							fmt.Println("Cryptocurrency", elem.ID, elem.Name, "price is lower than", v.Price)
-						}
-						i++
-						if i == 2 {
-							continue
-						}
-					}
-				} else {
-					continue
-				}
+			mapData, err = ReadDataFile(dataFile)
+			if err != nil {
+				return err
 			}
+			m[v.CryptoID] = mapData
 		}
-		lastRuleID = v.CryptoID
+		price, err := strconv.ParseFloat(m[v.CryptoID].PriceUsd, 64)
+		if err != nil {
+			return err
+		}
+
+		if price > v.Price && v.Rule == "gt" {
+			fmt.Println("Cryptocurrency", m[v.CryptoID].ID, m[v.CryptoID].Name, "price is greater than", v.Price)
+		}
+		if price < v.Price && v.Rule == "lt" {
+			fmt.Println("Cryptocurrency", m[v.CryptoID].ID, m[v.CryptoID].Name, "price is lower than", v.Price)
+		}
 	}
+
 	return nil
 }
-
-//for _ , _ = range ruleSet.Rules {
-//	data, err := ReadDataFile("rawData"+ idSlice.ID +".json")
-//	if err != nil {
-//		fmt.Println(err)
-//	}
-//	for _, elem := range data {
-//
-//		price, err := strconv.ParseFloat(elem.PriceUsd, 64)
-//		if err != nil {
-//			fmt.Println(err)
-//		}
-//		fmt.Println(price)
-//		for i, v := range ruleSet.Rules {
-//			if v.Rule == "gt" && price > v.Price {
-//				fmt.Println("Cryptocurrency", elem.ID, elem.Name, "price is greater than", v.Price)
-//			}
-//			if v.Rule == "lt" && price < v.Price {
-//				fmt.Println("Cryptocurrency", elem.ID, elem.Name, "price is lower than", v.Price)
-//			}
-//			i++
-//			if i == 2 {
-//				break
-//
-//			}
-//		}
-//	}
-//}

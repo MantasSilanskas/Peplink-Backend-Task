@@ -1,6 +1,6 @@
 package pkg
 
-type CryptoCurrencyData []struct {
+type CryptoCurrencyData struct {
 	ID               string `json:"id"`
 	Symbol           string `json:"symbol"`
 	Name             string `json:"name"`
@@ -18,3 +18,5 @@ type CryptoCurrencyData []struct {
 	Tsupply          string `json:"tsupply"`
 	Msupply          string `json:"msupply"`
 }
+
+type CryptoCurrencyDataSlice []CryptoCurrencyData

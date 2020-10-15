@@ -8,23 +8,23 @@ import (
 
 func ReadDataFile(fileName string) (CryptoCurrencyData, error) {
 
-	var data CryptoCurrencyData
+	var data CryptoCurrencyDataSlice
 
 	jsonFile, err := os.Open(fileName)
 	if err != nil {
-		return data, err
+		return CryptoCurrencyData{}, err
 	}
 	defer jsonFile.Close()
 
 	byteValue, err := ioutil.ReadAll(jsonFile)
 	if err != nil {
-		return data, err
+		return CryptoCurrencyData{}, err
 	}
 
 	err = json.Unmarshal(byteValue, &data)
 	if err != nil {
-		return data, err
+		return CryptoCurrencyData{}, err
 	}
 
-	return data, err
+	return data[0], err
 }
