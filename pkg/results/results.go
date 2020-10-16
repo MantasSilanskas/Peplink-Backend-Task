@@ -1,7 +1,11 @@
-package pkg
+package results
 
 import (
 	"fmt"
+	"github.com/MantasSilanskas/Peplink-Backend-Task/pkg/download"
+	"github.com/MantasSilanskas/Peplink-Backend-Task/pkg/loadRuleSets"
+	"github.com/MantasSilanskas/Peplink-Backend-Task/pkg/rawDataStruct"
+	"github.com/MantasSilanskas/Peplink-Backend-Task/pkg/readingData"
 	"strconv"
 )
 
@@ -13,21 +17,21 @@ const (
 
 func Parse() error {
 
-	ruleSet, err := LoadRuleSets("rulesFile.json") // Loads all rule sets from rulesFile.json
+	ruleSet, err := loadRuleSets.LoadRuleSets("rulesFile.json") // Loads all rule sets from rulesFile.json
 	if err != nil {
 		fmt.Println(err)
 	}
 
-	dataMap := make(map[string]CryptoCurrencyData)
+	dataMap := make(map[string]rawDataStruct.CryptoCurrencyData)
 
 	for i, v := range ruleSet.Rules {
 		fileUrl := baseUrl + v.CryptoID
 		if mapData, ok := dataMap[v.CryptoID]; !ok {
-			dataFile, err := DownloadFile(beginningDataFileName+v.CryptoID+dataFileExtension, fileUrl)
+			dataFile, err := download.DownloadFile(beginningDataFileName+v.CryptoID+dataFileExtension, fileUrl)
 			if err != nil {
 				return err
 			}
-			mapData, err = ReadDataFile(dataFile)
+			mapData, err = readingData.ReadDataFile(dataFile)
 			if err != nil {
 				return err
 			}
@@ -40,7 +44,6 @@ func Parse() error {
 
 		if price > v.Price && v.Rule == "gt" {
 			fmt.Println("Cryptocurrency", dataMap[v.CryptoID].ID, dataMap[v.CryptoID].Name, "price is greater than", v.Price)
-
 		}
 		if price < v.Price && v.Rule == "lt" {
 

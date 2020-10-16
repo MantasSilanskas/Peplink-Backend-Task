@@ -1,4 +1,4 @@
-package pkg
+package rawDataStruct
 
 type CryptoCurrencyData struct {
 	ID               string `json:"id"`

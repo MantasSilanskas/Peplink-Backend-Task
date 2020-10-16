@@ -1,4 +1,4 @@
-package pkg
+package loadRuleSets
 
 import (
 	"encoding/json"
