@@ -13,18 +13,15 @@ func main() {
 
 	fmt.Println("Stop application by pressing ctrl + C buttons at the same time.")
 
+	resultMap := make(map[int]bool)
+
 	ctx := context.Background()
 	ctx, cancel := context.WithCancel(ctx)
 
-	ticker := time.NewTicker(5 * time.Second)
+	ticker := time.NewTicker(30 * time.Second)
 	done := make(chan bool)
 
-	printed := [4]bool{}
-
-	printed, err := peplink.Parse(printed)
-	if err != nil {
-		fmt.Println(err)
-	}
+	peplink.Parse(resultMap)
 
 	go func() {
 		for {
@@ -32,10 +29,7 @@ func main() {
 			case <-done:
 				continue
 			case <-ticker.C:
-				printed, err = peplink.Parse(printed)
-				if err != nil {
-					fmt.Println(err)
-				}
+				peplink.Parse(resultMap)
 			}
 		}
 	}()

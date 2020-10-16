@@ -3,7 +3,6 @@ package peplink
 import (
 	"fmt"
 	"strconv"
-	"time"
 )
 
 const (
@@ -12,12 +11,12 @@ const (
 	dataFileExtension     = ".json"
 )
 
-func Parse(isPrinted [4]bool) ([4]bool, error) {
+func Parse(resultMap map[int]bool) (*map[int]bool, error) {
 
-	printed := isPrinted
+
 	ruleSet, err := LoadRuleSets("rulesFile.json") // Loads all rule sets from rulesFile.json
 	if err != nil {
-		return printed, err
+		return &resultMap, err
 	}
 
 	dataMap := make(map[string]CryptoCurrencyData)
@@ -27,30 +26,30 @@ func Parse(isPrinted [4]bool) ([4]bool, error) {
 		if mapData, ok := dataMap[v.CryptoID]; !ok {
 			err := DownloadFile(beginningDataFileName+v.CryptoID+dataFileExtension, fileUrl)
 			if err != nil {
-				return printed, err
+				return &resultMap, err
 			}
 			mapData, err = ReadDataFile(beginningDataFileName + v.CryptoID + dataFileExtension)
 			if err != nil {
-				return printed, err
+				return &resultMap, err
 			}
 			dataMap[v.CryptoID] = mapData
 		}
 		price, err := strconv.ParseFloat(dataMap[v.CryptoID].PriceUsd, 64)
 		if err != nil {
-			return printed, err
+			return &resultMap, err
 		}
-		if price > v.Price && v.Rule == "gt" && printed[i] == false {
-			fmt.Println(time.Stamp)
-			fmt.Println("Cryptocurrency", " id:", dataMap[v.CryptoID].ID, dataMap[v.CryptoID].Name, "price is greater than", v.Price)
-			printed[i] = true
-		}
-		if price < v.Price && v.Rule == "lt" && printed[i] == false {
-			fmt.Println(time.Stamp)
-			fmt.Println("Cryptocurrency", " id:", dataMap[v.CryptoID].ID, dataMap[v.CryptoID].Name, "price is lower than", v.Price)
-			printed[i] = true
+		if ok := resultMap[i]; !ok {
+			if price > v.Price && v.Rule == "gt" && resultMap[i] == false {
+				fmt.Println("Cryptocurrency", " id:", dataMap[v.CryptoID].ID, dataMap[v.CryptoID].Name, "price is greater than", v.Price)
+				resultMap[i] = true
+			}
+			if price < v.Price && v.Rule == "lt" && resultMap[i] == false {
+				fmt.Println("Cryptocurrency", " id:", dataMap[v.CryptoID].ID, dataMap[v.CryptoID].Name, "price is lower than", v.Price)
+				resultMap[i] = true
+			}
 		}
 		i++
 	}
 
-	return printed, nil
+	return &resultMap, nil
 }
