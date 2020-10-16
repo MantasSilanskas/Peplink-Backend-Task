@@ -18,11 +18,11 @@ func Parse() error {
 		fmt.Println(err)
 	}
 
-	m := make(map[string]CryptoCurrencyData)
+	dataMap := make(map[string]CryptoCurrencyData)
 
-	for _, v := range ruleSet.Rules {
+	for i, v := range ruleSet.Rules {
 		fileUrl := baseUrl + v.CryptoID
-		if mapData, ok := m[v.CryptoID]; !ok {
+		if mapData, ok := dataMap[v.CryptoID]; !ok {
 			dataFile, err := DownloadFile(beginningDataFileName+v.CryptoID+dataFileExtension, fileUrl)
 			if err != nil {
 				return err
@@ -31,19 +31,22 @@ func Parse() error {
 			if err != nil {
 				return err
 			}
-			m[v.CryptoID] = mapData
+			dataMap[v.CryptoID] = mapData
 		}
-		price, err := strconv.ParseFloat(m[v.CryptoID].PriceUsd, 64)
+		price, err := strconv.ParseFloat(dataMap[v.CryptoID].PriceUsd, 64)
 		if err != nil {
 			return err
 		}
 
 		if price > v.Price && v.Rule == "gt" {
-			fmt.Println("Cryptocurrency", m[v.CryptoID].ID, m[v.CryptoID].Name, "price is greater than", v.Price)
+			fmt.Println("Cryptocurrency", dataMap[v.CryptoID].ID, dataMap[v.CryptoID].Name, "price is greater than", v.Price)
+
 		}
 		if price < v.Price && v.Rule == "lt" {
-			fmt.Println("Cryptocurrency", m[v.CryptoID].ID, m[v.CryptoID].Name, "price is lower than", v.Price)
+
+			fmt.Println("Cryptocurrency", dataMap[v.CryptoID].ID, dataMap[v.CryptoID].Name, "price is lower than", v.Price)
 		}
+		i++
 	}
 
 	return nil

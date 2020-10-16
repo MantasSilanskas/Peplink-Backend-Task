@@ -3,11 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="e4c8d07b-85a4-4b7e-960a-30f2c736c7ed" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/downloadRawData.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/downloadRawData.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/rawData.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/rawData.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/readingData.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/readingData.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/main.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pkg/results.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/results.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rulesFile.json" beforeDir="false" afterPath="$PROJECT_DIR$/rulesFile.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,33 +86,34 @@
     <MESSAGE value="Added downloadRawData.go and loadRuleSets.go files in pkg directory" />
     <MESSAGE value="Added readingData.go" />
     <MESSAGE value="added results.go" />
-    <option name="LAST_COMMIT_MESSAGE" value="added results.go" />
+    <MESSAGE value="Basic layout of program without go routines." />
+    <option name="LAST_COMMIT_MESSAGE" value="Basic layout of program without go routines." />
   </component>
   <component name="WindowStateProjectService">
     <state x="414" y="195" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1602763238276">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="414" y="195" key="#com.intellij.execution.impl.EditConfigurationsDialog/-1920.0.1920.1080/0.0.1920.1080@0.0.1920.1080" timestamp="1602763238276" />
-    <state x="639" y="156" key="CommitChangelistDialog2" timestamp="1602787759089">
+    <state x="639" y="156" key="CommitChangelistDialog2" timestamp="1602795110826">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="639" y="156" key="CommitChangelistDialog2/-1920.0.1920.1080/0.0.1920.1080@0.0.1920.1080" timestamp="1602787759089" />
-    <state width="1877" height="295" key="GridCell.Tab.0.bottom" timestamp="1602794849935">
+    <state x="639" y="156" key="CommitChangelistDialog2/-1920.0.1920.1080/0.0.1920.1080@0.0.1920.1080" timestamp="1602795110826" />
+    <state width="1877" height="295" key="GridCell.Tab.0.bottom" timestamp="1602799313693">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1877" height="295" key="GridCell.Tab.0.bottom/-1920.0.1920.1080/0.0.1920.1080@0.0.1920.1080" timestamp="1602794849935" />
-    <state width="1877" height="295" key="GridCell.Tab.0.center" timestamp="1602794849934">
+    <state width="1877" height="295" key="GridCell.Tab.0.bottom/-1920.0.1920.1080/0.0.1920.1080@0.0.1920.1080" timestamp="1602799313693" />
+    <state width="1877" height="295" key="GridCell.Tab.0.center" timestamp="1602799313693">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1877" height="295" key="GridCell.Tab.0.center/-1920.0.1920.1080/0.0.1920.1080@0.0.1920.1080" timestamp="1602794849934" />
-    <state width="1877" height="295" key="GridCell.Tab.0.left" timestamp="1602794849934">
+    <state width="1877" height="295" key="GridCell.Tab.0.center/-1920.0.1920.1080/0.0.1920.1080@0.0.1920.1080" timestamp="1602799313693" />
+    <state width="1877" height="295" key="GridCell.Tab.0.left" timestamp="1602799313693">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1877" height="295" key="GridCell.Tab.0.left/-1920.0.1920.1080/0.0.1920.1080@0.0.1920.1080" timestamp="1602794849934" />
-    <state width="1877" height="295" key="GridCell.Tab.0.right" timestamp="1602794849935">
+    <state width="1877" height="295" key="GridCell.Tab.0.left/-1920.0.1920.1080/0.0.1920.1080@0.0.1920.1080" timestamp="1602799313693" />
+    <state width="1877" height="295" key="GridCell.Tab.0.right" timestamp="1602799313693">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1877" height="295" key="GridCell.Tab.0.right/-1920.0.1920.1080/0.0.1920.1080@0.0.1920.1080" timestamp="1602794849935" />
+    <state width="1877" height="295" key="GridCell.Tab.0.right/-1920.0.1920.1080/0.0.1920.1080@0.0.1920.1080" timestamp="1602799313693" />
     <state width="1877" height="363" key="GridCell.Tab.1.bottom" timestamp="1602792431742">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
@@ -132,10 +130,10 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="1877" height="363" key="GridCell.Tab.1.right/-1920.0.1920.1080/0.0.1920.1080@0.0.1920.1080" timestamp="1602792431742" />
-    <state x="552" y="273" key="Vcs.Push.Dialog.v2" timestamp="1602787761344">
+    <state x="552" y="273" key="Vcs.Push.Dialog.v2" timestamp="1602795113274">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="552" y="273" key="Vcs.Push.Dialog.v2/-1920.0.1920.1080/0.0.1920.1080@0.0.1920.1080" timestamp="1602787761344" />
+    <state x="552" y="273" key="Vcs.Push.Dialog.v2/-1920.0.1920.1080/0.0.1920.1080@0.0.1920.1080" timestamp="1602795113274" />
     <state x="623" y="235" width="672" height="678" key="search.everywhere.popup" timestamp="1602770067907">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
