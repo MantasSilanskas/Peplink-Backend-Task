@@ -11,11 +11,16 @@ import (
 
 func main() {
 
+	fmt.Println("Stop application by pressing ctrl and C buttons at the same time.")
+
 	ctx := context.Background()
 	ctx, cancel := context.WithCancel(ctx)
 
 	ticker := time.NewTicker(30 * time.Second)
 	done := make(chan bool)
+
+	fmt.Println(time.Now())
+	peplink.Parse()
 
 	go func() {
 		for {

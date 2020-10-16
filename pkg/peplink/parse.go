@@ -21,6 +21,7 @@ func Parse() error {
 	dataMap := make(map[string]CryptoCurrencyData)
 
 	for i, v := range ruleSet.Rules {
+
 		fileUrl := baseUrl + v.CryptoID
 		if mapData, ok := dataMap[v.CryptoID]; !ok {
 			err := DownloadFile(beginningDataFileName+v.CryptoID+dataFileExtension, fileUrl)
@@ -37,12 +38,11 @@ func Parse() error {
 		if err != nil {
 			return err
 		}
-
 		if price > v.Price && v.Rule == "gt" {
-			fmt.Println("Cryptocurrency", dataMap[v.CryptoID].ID, dataMap[v.CryptoID].Name, "price is greater than", v.Price)
+			fmt.Println("Cryptocurrency", " id:", dataMap[v.CryptoID].ID, dataMap[v.CryptoID].Name, "price is greater than", v.Price)
 		}
 		if price < v.Price && v.Rule == "lt" {
-			fmt.Println("Cryptocurrency", dataMap[v.CryptoID].ID, dataMap[v.CryptoID].Name, "price is lower than", v.Price)
+			fmt.Println("Cryptocurrency", " id:", dataMap[v.CryptoID].ID, dataMap[v.CryptoID].Name, "price is lower than", v.Price)
 		}
 		i++
 	}
