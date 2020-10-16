@@ -12,7 +12,7 @@ const (
 	dataFileExtension     = ".json"
 )
 
-func Parse(isPrinted [4]bool) ([4]bool, error) {
+func Parse(isPrinted [...]bool) ([...]bool, error) {
 
 	printed := isPrinted
 	ruleSet, err := LoadRuleSets("rulesFile.json") // Loads all rule sets from rulesFile.json

@@ -19,7 +19,7 @@ func main() {
 	ticker := time.NewTicker(5 * time.Second)
 	done := make(chan bool)
 
-	printed := [4]bool{}
+	var printed [...]bool
 
 	printed, err := peplink.Parse(printed)
 	if err != nil {
