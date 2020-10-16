@@ -2,15 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e4c8d07b-85a4-4b7e-960a-30f2c736c7ed" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/pkg/peplink/readingData.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pkg/peplink/results.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/main/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/main/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/download/downloadRawData.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/peplink/downloadRawData.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/loadRuleSets/loadRuleSets.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/peplink/loadRuleSets.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/rawDataStruct/rawData.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/peplink/rawData.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/readingData/readingData.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/results/results.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/peplink/parse.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/peplink/parse.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/peplink/parse.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/peplink/readingData.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/peplink/readingData.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/peplink/results.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/peplink/results.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,17 +93,18 @@
     <MESSAGE value="Basic layout of program without go routines." />
     <MESSAGE value="Added os.signal and ticker" />
     <MESSAGE value="Fixed project files" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed project files" />
+    <MESSAGE value="Code fixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Code fixes" />
   </component>
   <component name="WindowStateProjectService">
     <state x="414" y="195" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1602763238276">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="414" y="195" key="#com.intellij.execution.impl.EditConfigurationsDialog/-1920.0.1920.1080/0.0.1920.1080@0.0.1920.1080" timestamp="1602763238276" />
-    <state x="639" y="156" key="CommitChangelistDialog2" timestamp="1602834947078">
+    <state x="639" y="156" key="CommitChangelistDialog2" timestamp="1602836550660">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="639" y="156" key="CommitChangelistDialog2/-1920.0.1920.1080/0.0.1920.1080@0.0.1920.1080" timestamp="1602834947078" />
+    <state x="639" y="156" key="CommitChangelistDialog2/-1920.0.1920.1080/0.0.1920.1080@0.0.1920.1080" timestamp="1602836550660" />
     <state width="1877" height="295" key="GridCell.Tab.0.bottom" timestamp="1602834929272">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
@@ -141,10 +137,10 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="1877" height="363" key="GridCell.Tab.1.right/-1920.0.1920.1080/0.0.1920.1080@0.0.1920.1080" timestamp="1602792431742" />
-    <state x="552" y="273" key="Vcs.Push.Dialog.v2" timestamp="1602834950117">
+    <state x="552" y="273" key="Vcs.Push.Dialog.v2" timestamp="1602836555201">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="552" y="273" key="Vcs.Push.Dialog.v2/-1920.0.1920.1080/0.0.1920.1080@0.0.1920.1080" timestamp="1602834950117" />
+    <state x="552" y="273" key="Vcs.Push.Dialog.v2/-1920.0.1920.1080/0.0.1920.1080@0.0.1920.1080" timestamp="1602836555201" />
     <state x="623" y="235" width="672" height="678" key="search.everywhere.popup" timestamp="1602770067907">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>

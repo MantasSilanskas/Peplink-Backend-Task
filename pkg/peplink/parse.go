@@ -39,11 +39,9 @@ func Parse() error {
 		}
 
 		if price > v.Price && v.Rule == "gt" {
-
 			fmt.Println("Cryptocurrency", dataMap[v.CryptoID].ID, dataMap[v.CryptoID].Name, "price is greater than", v.Price)
 		}
 		if price < v.Price && v.Rule == "lt" {
-
 			fmt.Println("Cryptocurrency", dataMap[v.CryptoID].ID, dataMap[v.CryptoID].Name, "price is lower than", v.Price)
 		}
 		i++
