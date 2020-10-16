@@ -3,7 +3,7 @@ package main
 import (
 	"context"
 	"fmt"
-	"github.com/MantasSilanskas/Peplink-Backend-Task/pkg/results"
+	"github.com/MantasSilanskas/Peplink-Backend-Task/pkg/peplink"
 	"os"
 	"os/signal"
 	"time"
@@ -24,7 +24,7 @@ func main() {
 				continue
 			case <-ticker.C:
 				fmt.Println(time.Now())
-				results.Parse()
+				peplink.Parse()
 			}
 		}
 	}()

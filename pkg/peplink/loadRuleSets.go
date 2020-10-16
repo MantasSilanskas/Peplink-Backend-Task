@@ -1,4 +1,4 @@
-package loadRuleSets
+package peplink
 
 import (
 	"encoding/json"
@@ -27,9 +27,7 @@ func LoadRuleSets(filename string) (ruleSets, error) {
 
 	jsonParser := json.NewDecoder(ruleSetFile)
 	err = jsonParser.Decode(&ruleSet)
-	if err != nil {
-		return ruleSet, err
-	}
+	return ruleSet, err
 
 	return ruleSet, err
 }

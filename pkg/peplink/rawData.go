@@ -1,4 +1,4 @@
-package rawDataStruct
+package peplink
 
 type CryptoCurrencyData struct {
 	ID               string `json:"id"`
