@@ -13,6 +13,7 @@ const (
 
 func Parse(resultMap map[int]bool) (*map[int]bool, error) {
 
+
 	ruleSet, err := LoadRuleSets("rulesFile.json") // Loads all rule sets from rulesFile.json
 	if err != nil {
 		return &resultMap, err
