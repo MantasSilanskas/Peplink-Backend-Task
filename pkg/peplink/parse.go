@@ -11,11 +11,11 @@ const (
 	dataFileExtension     = ".json"
 )
 
-func Parse() error {
+func Parse(isPrinted [4]bool) (printed [4]bool, err error) {
 
 	ruleSet, err := LoadRuleSets("rulesFile.json") // Loads all rule sets from rulesFile.json
 	if err != nil {
-		return err
+		return printed, err
 	}
 
 	dataMap := make(map[string]CryptoCurrencyData)
@@ -26,26 +26,32 @@ func Parse() error {
 		if mapData, ok := dataMap[v.CryptoID]; !ok {
 			err := DownloadFile(beginningDataFileName+v.CryptoID+dataFileExtension, fileUrl)
 			if err != nil {
-				return err
+				return printed, err
 			}
 			mapData, err = ReadDataFile(beginningDataFileName + v.CryptoID + dataFileExtension)
 			if err != nil {
-				return err
+				return printed, err
 			}
 			dataMap[v.CryptoID] = mapData
 		}
 		price, err := strconv.ParseFloat(dataMap[v.CryptoID].PriceUsd, 64)
 		if err != nil {
-			return err
+			return printed, err
 		}
-		if price > v.Price && v.Rule == "gt" {
-			fmt.Println("Cryptocurrency", " id:", dataMap[v.CryptoID].ID, dataMap[v.CryptoID].Name, "price is greater than", v.Price)
-		}
-		if price < v.Price && v.Rule == "lt" {
-			fmt.Println("Cryptocurrency", " id:", dataMap[v.CryptoID].ID, dataMap[v.CryptoID].Name, "price is lower than", v.Price)
+		if isPrinted[i] == false {
+			if price > v.Price && v.Rule == "gt" {
+				fmt.Println("Cryptocurrency", " id:", dataMap[v.CryptoID].ID, dataMap[v.CryptoID].Name, "price is greater than", v.Price)
+				printed[i] = true
+			}
+			if price < v.Price && v.Rule == "lt" {
+				fmt.Println("Cryptocurrency", " id:", dataMap[v.CryptoID].ID, dataMap[v.CryptoID].Name, "price is lower than", v.Price)
+				printed[i] = true
+			}
 		}
 		i++
 	}
 
-	return nil
+	fmt.Println(printed)
+
+	return printed, nil
 }

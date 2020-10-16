@@ -16,11 +16,17 @@ func main() {
 	ctx := context.Background()
 	ctx, cancel := context.WithCancel(ctx)
 
-	ticker := time.NewTicker(30 * time.Second)
+	ticker := time.NewTicker(5 * time.Second)
 	done := make(chan bool)
 
+	var printed [4]bool
+	fmt.Println(printed)
 	fmt.Println(time.Now())
-	peplink.Parse()
+
+	printed, err := peplink.Parse(printed)
+	if err != nil {
+		fmt.Println(err)
+	}
 
 	go func() {
 		for {
@@ -29,7 +35,10 @@ func main() {
 				continue
 			case <-ticker.C:
 				fmt.Println(time.Now())
-				peplink.Parse()
+				printed, err = peplink.Parse(printed)
+				if err != nil {
+					fmt.Println(err)
+				}
 			}
 		}
 	}()
