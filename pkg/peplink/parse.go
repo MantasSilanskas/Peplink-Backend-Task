@@ -3,6 +3,7 @@ package peplink
 import (
 	"fmt"
 	"strconv"
+	"time"
 )
 
 const (
@@ -11,8 +12,9 @@ const (
 	dataFileExtension     = ".json"
 )
 
-func Parse(isPrinted [4]bool) (printed [4]bool, err error) {
+func Parse(isPrinted [4]bool) ([4]bool, error) {
 
+	printed := isPrinted
 	ruleSet, err := LoadRuleSets("rulesFile.json") // Loads all rule sets from rulesFile.json
 	if err != nil {
 		return printed, err
@@ -21,7 +23,6 @@ func Parse(isPrinted [4]bool) (printed [4]bool, err error) {
 	dataMap := make(map[string]CryptoCurrencyData)
 
 	for i, v := range ruleSet.Rules {
-
 		fileUrl := baseUrl + v.CryptoID
 		if mapData, ok := dataMap[v.CryptoID]; !ok {
 			err := DownloadFile(beginningDataFileName+v.CryptoID+dataFileExtension, fileUrl)
@@ -38,20 +39,18 @@ func Parse(isPrinted [4]bool) (printed [4]bool, err error) {
 		if err != nil {
 			return printed, err
 		}
-		if isPrinted[i] == false {
-			if price > v.Price && v.Rule == "gt" {
-				fmt.Println("Cryptocurrency", " id:", dataMap[v.CryptoID].ID, dataMap[v.CryptoID].Name, "price is greater than", v.Price)
-				printed[i] = true
-			}
-			if price < v.Price && v.Rule == "lt" {
-				fmt.Println("Cryptocurrency", " id:", dataMap[v.CryptoID].ID, dataMap[v.CryptoID].Name, "price is lower than", v.Price)
-				printed[i] = true
-			}
+		if price > v.Price && v.Rule == "gt" && printed[i] == false {
+			fmt.Println(time.Stamp)
+			fmt.Println("Cryptocurrency", " id:", dataMap[v.CryptoID].ID, dataMap[v.CryptoID].Name, "price is greater than", v.Price)
+			printed[i] = true
+		}
+		if price < v.Price && v.Rule == "lt" && printed[i] == false {
+			fmt.Println(time.Stamp)
+			fmt.Println("Cryptocurrency", " id:", dataMap[v.CryptoID].ID, dataMap[v.CryptoID].Name, "price is lower than", v.Price)
+			printed[i] = true
 		}
 		i++
 	}
-
-	fmt.Println(printed)
 
 	return printed, nil
 }

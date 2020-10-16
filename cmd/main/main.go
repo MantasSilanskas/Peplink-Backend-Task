@@ -11,7 +11,7 @@ import (
 
 func main() {
 
-	fmt.Println("Stop application by pressing ctrl and C buttons at the same time.")
+	fmt.Println("Stop application by pressing ctrl + C buttons at the same time.")
 
 	ctx := context.Background()
 	ctx, cancel := context.WithCancel(ctx)
@@ -19,9 +19,7 @@ func main() {
 	ticker := time.NewTicker(5 * time.Second)
 	done := make(chan bool)
 
-	var printed [4]bool
-	fmt.Println(printed)
-	fmt.Println(time.Now())
+	printed := [4]bool{}
 
 	printed, err := peplink.Parse(printed)
 	if err != nil {
@@ -34,7 +32,6 @@ func main() {
 			case <-done:
 				continue
 			case <-ticker.C:
-				fmt.Println(time.Now())
 				printed, err = peplink.Parse(printed)
 				if err != nil {
 					fmt.Println(err)
