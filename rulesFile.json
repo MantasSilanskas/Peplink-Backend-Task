@@ -4,12 +4,12 @@
   "rules":[
     {
       "crypto_id":"90",
-      "price":43470.98,
+      "price":3470.98,
       "rule":"lt"
     },
     {
       "crypto_id":"90",
-      "price":3900.00,
+      "price":10900.00,
       "rule":"gt"
     },
     {
@@ -19,7 +19,7 @@
     },
     {
       "crypto_id":"91",
-      "price":0.001,
+      "price":0.002,
       "rule":"gt"
     }
   ]

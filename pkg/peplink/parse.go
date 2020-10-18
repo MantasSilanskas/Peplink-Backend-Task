@@ -11,32 +11,36 @@ const (
 	dataFileExtension     = ".json"
 )
 
-func Parse(resultMap map[int]bool) (*map[int]bool, error) {
+func Parse(resultMap map[int]bool, rulesPrices map[int]float64) (*map[int]bool, *map[int]float64, error) {
 
 
 	ruleSet, err := LoadRuleSets("rulesFile.json") // Loads all rule sets from rulesFile.json
 	if err != nil {
-		return &resultMap, err
+		return &resultMap, &rulesPrices, err
 	}
 
 	dataMap := make(map[string]CryptoCurrencyData)
 
 	for i, v := range ruleSet.Rules {
+
 		fileUrl := baseUrl + v.CryptoID
 		if mapData, ok := dataMap[v.CryptoID]; !ok {
 			err := DownloadFile(beginningDataFileName+v.CryptoID+dataFileExtension, fileUrl)
 			if err != nil {
-				return &resultMap, err
+				return &resultMap, &rulesPrices, err
 			}
 			mapData, err = ReadDataFile(beginningDataFileName + v.CryptoID + dataFileExtension)
 			if err != nil {
-				return &resultMap, err
+				return &resultMap, &rulesPrices, err
 			}
 			dataMap[v.CryptoID] = mapData
 		}
+		if rulesPrices[i] != v.Price {
+			resultMap[i] = false
+		}
 		price, err := strconv.ParseFloat(dataMap[v.CryptoID].PriceUsd, 64)
 		if err != nil {
-			return &resultMap, err
+			return &resultMap, &rulesPrices, err
 		}
 		if ok := resultMap[i]; !ok {
 			if price > v.Price && v.Rule == "gt" && resultMap[i] == false {
@@ -48,8 +52,9 @@ func Parse(resultMap map[int]bool) (*map[int]bool, error) {
 				resultMap[i] = true
 			}
 		}
+		rulesPrices[i] = v.Price
 		i++
 	}
 
-	return &resultMap, nil
+	return &resultMap, &rulesPrices, nil
 }
