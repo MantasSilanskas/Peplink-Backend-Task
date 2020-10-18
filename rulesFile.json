@@ -1,6 +1,6 @@
 {
   "name":"ruleSets",
-  "description":"Cryptovalues Checker ruleset",
+  "description":"Cryptocurrency values Checker ruleset",
   "rules":[
     {
       "crypto_id":"90",
@@ -9,7 +9,7 @@
     },
     {
       "crypto_id":"90",
-      "price":10900.00,
+      "price":3900.10,
       "rule":"gt"
     },
     {
