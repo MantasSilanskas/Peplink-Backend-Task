@@ -1,6 +1,6 @@
 {
   "name":"ruleSets",
-  "description":"Cryptovalues Checker ruleset",
+  "description":"Cryptocurrency values Checker ruleset",
   "rules":[
     {
       "crypto_id":"90",

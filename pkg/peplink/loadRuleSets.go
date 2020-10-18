@@ -19,6 +19,9 @@ func LoadRuleSets(filename string) (ruleSets, error) {
 
 	var ruleSet ruleSets
 	ruleSetFile, err := os.Open(filename)
+	if err != nil {
+		return ruleSet, err
+	}
 
 	defer ruleSetFile.Close()
 	if err != nil {

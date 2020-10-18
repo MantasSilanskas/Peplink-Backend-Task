@@ -11,7 +11,7 @@ import (
 
 func main() {
 
-	fmt.Println("Stop application by pressing ctrl + C buttons at the same time.")
+	fmt.Println("Stop application by pressing Ctrl + C buttons at the same time.")
 
 	resultMap := make(map[int]bool)      // šis map užtikrina, kad nebūtų rezultatų dublikatų
 	rulesPrices := make(map[int]float64) // šis map leidžia, atsispausdinti atsakymą taisyklei, jei jos atsakymas jau buvo atspausdintas tačiau programos veikimo metų jos "Price" buvo pakeistas.
@@ -31,7 +31,8 @@ func main() {
 		for {
 			select {
 			case <-done:
-				continue
+				cancel()
+				return
 			case <-ticker.C:
 				_, _, err := peplink.Parse(resultMap, rulesPrices)
 				if err != nil {
@@ -44,6 +45,4 @@ func main() {
 	sig := make(chan os.Signal, 1)
 	signal.Notify(sig, os.Interrupt)
 	<-sig
-	cancel()
-
 }
