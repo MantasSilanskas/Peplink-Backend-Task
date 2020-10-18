@@ -13,7 +13,8 @@ func main() {
 
 	fmt.Println("Stop application by pressing ctrl + C buttons at the same time.")
 
-	resultMap := make(map[int]bool)
+	resultMap := make(map[int]bool)      // šis map užtikrina, kad nebūtų rezultatų dublikatų
+	rulesPrices := make(map[int]float64) // šis map leidžia, atsispausdinti atsakymą taisyklei, jei jos atsakymas jau buvo atspausdintas tačiau programos veikimo metų jos "Price" buvo pakeistas.
 
 	ctx := context.Background()
 	ctx, cancel := context.WithCancel(ctx)
@@ -21,7 +22,10 @@ func main() {
 	ticker := time.NewTicker(30 * time.Second)
 	done := make(chan bool)
 
-	peplink.Parse(resultMap)
+	_, _, err := peplink.Parse(resultMap, rulesPrices)
+	if err != nil {
+		fmt.Println(err)
+	}
 
 	go func() {
 		for {
@@ -29,7 +33,10 @@ func main() {
 			case <-done:
 				continue
 			case <-ticker.C:
-				peplink.Parse(resultMap)
+				_, _, err := peplink.Parse(resultMap, rulesPrices)
+				if err != nil {
+					fmt.Println(err)
+				}
 			}
 		}
 	}()
