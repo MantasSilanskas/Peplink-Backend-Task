@@ -16,6 +16,8 @@ func ReadDataFile(fileName string) (CryptoCurrencyData, error) {
 	}
 	defer jsonFile.Close()
 
+	// jei naudoji ioutil.ReadAll, tuomet gali naudot ir
+	// ioutil.ReadFile, kuri atliks visa logika su os.Open.
 	byteValue, err := ioutil.ReadAll(jsonFile)
 	if err != nil {
 		return CryptoCurrencyData{}, err
