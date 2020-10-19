@@ -1,9 +1,9 @@
 package main
 
 import (
+	"Peplink-Backend-Task/pkg/peplink"
 	"context"
 	"fmt"
-	"github.com/MantasSilanskas/Peplink-Backend-Task/pkg/peplink"
 	"os"
 	"os/signal"
 	"time"
@@ -29,12 +29,12 @@ func loop(ctx context.Context) {
 	resultMap := make(map[int]bool)      // šis map užtikrina, kad nebūtų rezultatų dublikatų
 	rulesPrices := make(map[int]float64) // šis map leidžia, atsispausdinti atsakymą taisyklei, jei jos atsakymas jau buvo atspausdintas tačiau programos veikimo metų jos "Price" buvo pakeistas.
 
-	ticker := time.NewTicker(30 * time.Second)
+	ticker := time.NewTicker(2 * time.Second)
 
-	_, _, err := peplink.Parse(resultMap, rulesPrices)
-	if err != nil {
-		fmt.Println(err)
-	}
+	// tickeri visada reikia sustabdyti
+	defer ticker.Stop()
+
+	loadData(resultMap, rulesPrices)
 
 	go func() {
 		for {
@@ -42,12 +42,15 @@ func loop(ctx context.Context) {
 			case <-ctx.Done():
 				return
 			case <-ticker.C:
-				_, _, err := peplink.Parse(resultMap, rulesPrices)
-				if err != nil {
-					fmt.Println(err)
-				}
+				loadData(resultMap, rulesPrices)
 			}
 		}
 	}()
+}
 
+func loadData(rm map[int]bool, rp map[int]float64) {
+	_, _, err := peplink.Parse(rm, rp)
+	if err != nil {
+		fmt.Println(err)
+	}
 }

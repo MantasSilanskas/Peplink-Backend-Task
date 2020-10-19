@@ -2,7 +2,7 @@ package peplink
 
 import (
 	"encoding/json"
-	"os"
+	"io/ioutil"
 )
 
 type ruleSets struct {
@@ -17,20 +17,18 @@ type ruleSets struct {
 
 func LoadRuleSets(filename string) (ruleSets, error) {
 
-	var ruleSet ruleSets
-	ruleSetFile, err := os.Open(filename)
-	if err != nil {
-		return ruleSet, err
+	// visa funkciaj galiam sutrumpinti pasinaudojus ioutil.ReadFile
+	var (
+		err  error
+		r    ruleSets
+		data []byte
+	)
+	if data, err = ioutil.ReadFile(filename); err != nil {
+		return ruleSets{}, err
 	}
 
-	defer ruleSetFile.Close()
-	if err != nil {
-		return ruleSet, err
+	if err = json.Unmarshal(data, &r); err != nil {
+		return ruleSets{}, err
 	}
-
-	jsonParser := json.NewDecoder(ruleSetFile)
-	err = jsonParser.Decode(&ruleSet)
-	return ruleSet, err
-
-	return ruleSet, err
+	return r, err
 }
